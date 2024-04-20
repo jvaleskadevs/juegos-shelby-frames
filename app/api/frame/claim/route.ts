@@ -53,7 +53,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
       {
         action: 'link',
         label: 'Ver a T. Shelby',
-        target: 'https://warpcast.com/@thomasshelby17'
+        target: 'https://warpcast.com/@thommyshelby17'
       }
     ],
     image: { 

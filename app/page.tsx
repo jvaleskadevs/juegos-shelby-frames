@@ -14,7 +14,7 @@ const frameMetadata = getFrameMetadata({
     {
       action: 'link',
       label: 'Ver a T. Shelby',
-      target: 'https://warpcast.com/@thomasshelby17'
+      target: 'https://warpcast.com/@thommyshelby17'
     }
   ],
   image: { 
