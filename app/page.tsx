@@ -2,31 +2,26 @@ import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import type { Metadata } from 'next';
 import { URL } from './config';
 
-const title = 'JFrame';
-const description = 'JFrame by J.';
+const title = 'Los Juegos Shelby';
+const description = 'Los Juegos Shelby.';
 const image = `${URL}/intro.png`;
 
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Press me'
+      label: 'Obtener recompensa'
     },
     {
       action: 'link',
-      label: 'View J. Valeska',
-      target: 'https://warpcast.com/@j-valeska'
-    }/*,
-    {
-      action: 'post_redirect',
-      label: 'View J. Valeska'
-    }*/
+      label: 'Ver a T. Shelby',
+      target: 'https://warpcast.com/@thomasshelby17'
+    }
   ],
   image: { 
     src: image, 
     aspectRatio: '1:1' 
   },
-  //input: { text: 'Some text' },
-  postUrl: `${URL}/api/frame`
+  postUrl: `${URL}/api/frame/claim`
 });
 
 export const metadata: Metadata = {
@@ -41,5 +36,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <><h1>GM, JFrame is a Farcaster frame! J.</h1></>
+  return <><h1>Los Juegos Shelby.</h1></>
 }

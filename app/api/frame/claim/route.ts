@@ -1,0 +1,71 @@
+import { getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
+import { getFarcasterUserAddress } from '@coinbase/onchainkit/farcaster';
+import { NextRequest, NextResponse } from 'next/server';
+import {
+  init,
+  validateFramesMessage,
+  ValidateFramesMessageInput,
+  ValidateFramesMessageOutput,
+} from '@airstack/frames';
+import { toHex } from 'viem';
+import { mintRewardTo } from '../../../lib/mintRewardTo';
+import { URL } from '../../../config';
+import { Errors } from '../../../errors';
+import { rewards } from '../../../rewards';
+
+init(process.env.NEXT_PUBLIC_AIRSTACK_API_KEY ?? '');
+
+async function getResponse(req: NextRequest): Promise<NextResponse> {
+  const body: ValidateFramesMessageInput = await req.json();
+  const { isValid, message } = await validateFramesMessage(body);
+  
+  if (!isValid) return new NextResponse(Errors.NoValidMessage);
+
+  const fid: number = message?.data?.fid ?? 0;
+  if (fid === 0) return new NextResponse(Errors.NoFID);
+  
+  const action = message?.data?.frameActionBody || undefined;
+ 
+  if (action?.buttonIndex === 1) {
+    if (rewards.includes(fid)) {       
+      const address = (
+        await getFarcasterUserAddress(fid)
+      )?.verifiedAddresses?.[0];
+      if (!address) return new NextResponse(Errors.NoAddress);
+      const success = true;//await mintRewardTo(address);
+      if (success) {
+        return new NextResponse(getFrameHtmlResponse({
+          image: { 
+            src: `${URL}/success.png`, 
+            aspectRatio: '1:1' 
+          },
+          postUrl: `${URL}/api/frame/claim`
+        }));            
+      }
+    }
+  }
+ 
+  return new NextResponse(getFrameHtmlResponse({
+    buttons: [
+      {
+        label: 'Obtener recompensa'
+      },
+      {
+        action: 'link',
+        label: 'Ver a T. Shelby',
+        target: 'https://warpcast.com/@thomasshelby17'
+      }
+    ],
+    image: { 
+      src: `${URL}/intro.png`, 
+      aspectRatio: '1:1' 
+    },
+    postUrl: `${URL}/api/frame/claim`
+  }));
+}
+
+export async function POST(req: NextRequest): Promise<Response> {
+  return getResponse(req);
+}
+
+export const dynamic = 'force-dynamic';
