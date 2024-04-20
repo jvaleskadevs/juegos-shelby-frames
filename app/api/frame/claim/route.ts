@@ -47,24 +47,24 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     }
   } catch(err) {
     console.log(err);
-    return new NextResponse(getFrameHtmlResponse({
-      buttons: [
-        {
-          label: 'Obtener recompensa'
-        },
-        {
-          action: 'link',
-          label: 'Ver a T. Shelby',
-          target: 'https://warpcast.com/thommyshelby17'
-        }
-      ],
-      image: { 
-        src: `${URL}/intro.png`, 
-        aspectRatio: '1:1' 
-      },
-      postUrl: `${URL}/api/frame/claim`
-    }));
   }
+  return new NextResponse(getFrameHtmlResponse({
+    buttons: [
+      {
+        label: 'Obtener recompensa'
+      },
+      {
+        action: 'link',
+        label: 'Ver a T. Shelby',
+        target: 'https://warpcast.com/thommyshelby17'
+      }
+    ],
+    image: { 
+      src: `${URL}/intro.png`, 
+      aspectRatio: '1:1' 
+    },
+    postUrl: `${URL}/api/frame/claim`
+  }));
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
