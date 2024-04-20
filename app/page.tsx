@@ -4,7 +4,7 @@ import { URL } from './config';
 
 const title = 'Los Juegos Shelby';
 const description = 'Los Juegos Shelby.';
-const image = `${URL}/intro.png`;
+const image = `${URL}/intro.jpeg`;
 
 const frameMetadata = getFrameMetadata({
   buttons: [

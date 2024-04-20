@@ -37,7 +37,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         if (success) {
           return new NextResponse(getFrameHtmlResponse({
             image: { 
-              src: `${URL}/success.png`, 
+              src: `${URL}/success.jpeg`, 
               aspectRatio: '1:1' 
             },
             postUrl: `${URL}/api/frame/claim`
@@ -60,7 +60,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
       }
     ],
     image: { 
-      src: `${URL}/intro.png`, 
+      src: `${URL}/intro.jpeg`, 
       aspectRatio: '1:1' 
     },
     postUrl: `${URL}/api/frame/claim`
