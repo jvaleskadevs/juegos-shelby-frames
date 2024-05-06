@@ -7,7 +7,7 @@ import {
   ValidateFramesMessageInput,
   ValidateFramesMessageOutput,
 } from '@airstack/frames';
-import { toHex } from 'viem';
+import { Address, toHex } from 'viem';
 import { mintRewardTo } from '../../../lib/mintRewardTo';
 import { URL } from '../../../config';
 import { Errors } from '../../../errors';
@@ -29,9 +29,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
    
     if (action?.buttonIndex === 1) {
       if (rewards.includes(fid)) {       
-        const address = (
+        const address: Address | undefined = (
           await getFarcasterUserAddress(fid)
-        )?.verifiedAddresses?.[0];
+        )?.verifiedAddresses?.[0] as Address | undefined;
         if (!address) return new NextResponse(Errors.NoAddress);
         const success = await mintRewardTo(address);
         if (success) {

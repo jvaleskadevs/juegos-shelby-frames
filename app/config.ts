@@ -1,4 +1,4 @@
-import { juegosShelbyAbi } from "./abi";
+import { JUEGOS_SHELBY_ABI } from "./abi/juegosShelby";
 
 const LOCALHOST = 'http://localhost:3000';
 const DOMAIN_URL = 'https://juegos-shelby-frames.vercel.app';
@@ -11,7 +11,7 @@ export const DEGEN = {
 
 export const SHELBY = {
   address: "0xbB4E4732959C5b7246C7aC3467a04B57544E60d7",
-  abi: juegosShelbyAbi
+  abi: JUEGOS_SHELBY_ABI
 }
 
 
