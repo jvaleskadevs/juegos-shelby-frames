@@ -1,3 +1,5 @@
+import { juegosShelbyAbi } from "./abi";
+
 const LOCALHOST = 'http://localhost:3000';
 const DOMAIN_URL = 'https://juegos-shelby-frames.vercel.app';
 export const URL: string = process.env.NODE_ENV === 'development' ? LOCALHOST : DOMAIN_URL;
@@ -8,9 +10,10 @@ export const DEGEN = {
 }
 
 export const SHELBY = {
-  address: ""
+  address: "0xbB4E4732959C5b7246C7aC3467a04B57544E60d7",
+  abi: juegosShelbyAbi
 }
 
 
-export const REQUEST_ID = "";
-export const PROJECT_ID = "";
+export const REQUEST_ID = process.env.NEXT_PUBLIC_REQUEST_ID ?? "";
+export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID ?? "";

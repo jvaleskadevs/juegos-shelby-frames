@@ -7,7 +7,7 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     projectId: PROJECT_ID,
     contractAddress: SHELBY.address,
     chainId: DEGEN.chainId,
-    functionSignature: 'mintTo(address)',
+    functionSignature: 'safeMint(address to)',
     args: {
       to: address
     }
@@ -43,6 +43,8 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
       }
       
       counter++;
+      
+      setTimeout(() => console.log(`delay... tried ${counter} times..`), 777);
     }
     return success;
   }

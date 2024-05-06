@@ -33,7 +33,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
           await getFarcasterUserAddress(fid)
         )?.verifiedAddresses?.[0];
         if (!address) return new NextResponse(Errors.NoAddress);
-        const success = true;//await mintRewardTo(address);
+        const success = await mintRewardTo(address);
         if (success) {
           return new NextResponse(getFrameHtmlResponse({
             image: { 
