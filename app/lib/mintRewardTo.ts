@@ -29,6 +29,8 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     console.log(tx);
 
     if (response.status == 200) {
+      return true;
+      /*
       const stateOptions = {
         method: 'GET',
         headers: {
@@ -54,6 +56,7 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
         setTimeout(() => console.log(`delay... tried ${counter} times..`), 777);
       }
       return success;
+      */
     }
     return false;
   } catch(err) {
