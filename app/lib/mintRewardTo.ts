@@ -3,7 +3,7 @@ import { DEGEN, SHELBY, REQUEST_ID, PROJECT_ID } from '../config';
 
 export async function mintRewardTo(address: Address): Promise<boolean> {
   const data = {
-    requestId: REQUEST_ID,
+    //requestId: REQUEST_ID,
     projectId: PROJECT_ID,
     contractAddress: SHELBY.address,
     chainId: DEGEN.chainId,

@@ -13,7 +13,7 @@ import { URL } from '../../../config';
 import { Errors } from '../../../errors';
 import { rewards } from '../../../rewards';
 
-init(process.env.NEXT_PUBLIC_AIRSTACK_API_KEY ?? '');
+init(process.env.AIRSTACK_API_KEY ?? '');
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   try {

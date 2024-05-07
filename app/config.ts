@@ -15,5 +15,5 @@ export const SHELBY = {
 }
 
 
-export const REQUEST_ID = process.env.NEXT_PUBLIC_REQUEST_ID ?? "";
-export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID ?? "";
+export const REQUEST_ID = process.env.REQUEST_ID ?? "";
+export const PROJECT_ID = process.env.PROJECT_ID ?? "";
