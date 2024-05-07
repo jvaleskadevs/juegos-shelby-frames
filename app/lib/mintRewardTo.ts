@@ -7,7 +7,7 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     projectId: PROJECT_ID,
     contractAddress: SHELBY.address,
     chainId: DEGEN.chainId,
-    functionSignature: 'safeMint(address)',
+    functionSignature: 'safeMint(address to)',
     args: {
       to: address
     }
