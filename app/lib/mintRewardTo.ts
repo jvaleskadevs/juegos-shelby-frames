@@ -30,6 +30,7 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     console.log(tx);
     
     options.method = 'GET';
+    options.body = null;
     const getReceipt = getRequest + tx.transactionId;
     if (response.status == 200) {
       let success;
