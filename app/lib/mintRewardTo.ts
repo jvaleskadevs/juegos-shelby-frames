@@ -19,7 +19,7 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.SYNDICATE_API_KEY}`,
-      'Content-Type': 'applicaton/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   };  
@@ -28,34 +28,33 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
   try {
     const tx = await response.json();
     console.log(tx);
-    return true;
+    
+    options.method = 'GET';
+    const getReceipt = getRequest + tx.transactionId;
+    if (response.status == 200) {
+      let success;
+      let counter = 0;
+      while (!success || counter < 7) {
+        const response = await fetch(baseUrl+getReceipt, options);
+        const receipt = await response.json();
+        if (receipt?.invalid) return false;
+        
+        for (let i = 0; i < receipt.transactionAttempts.length; i++) {
+          if (receipt.transactionAttempts[i].status === "CONFIRMED") {
+            success = true;
+          }
+        }
+        
+        counter++;
+        
+        setTimeout(() => console.log(`delay... tried ${counter} times..`), 777);
+      }
+      return success;
+    }
+    return false;
   } catch(err) {
     console.log(err);
     return false;
   }
-  /*
-  options.method = 'GET';
-  const getReceipt = getRequest + tx.transactionId;
-  if (response.status == 200) {
-    let success;
-    let counter = 0;
-    while (!success || counter < 7) {
-      const response = await fetch(baseUrl+getReceipt, options);
-      const receipt = await response.json();
-      if (receipt?.invalid) return false;
-      
-      for (let i = 0; i < receipt.transactionAttempts.length; i++) {
-        if (receipt.transactionAttempts[i].status === "CONFIRMED") {
-          success = true;
-        }
-      }
-      
-      counter++;
-      
-      setTimeout(() => console.log(`delay... tried ${counter} times..`), 777);
-    }
-    return success;
-  }
-  */
   return false;
 }
