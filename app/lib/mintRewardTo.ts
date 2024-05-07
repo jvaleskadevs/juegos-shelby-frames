@@ -7,7 +7,7 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     projectId: PROJECT_ID,
     contractAddress: SHELBY.address,
     chainId: DEGEN.chainId,
-    functionSignature: 'safeMint(address to)',
+    functionSignature: 'safeMint(address)',
     args: {
       to: address
     }
@@ -23,11 +23,16 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     },
     body: JSON.stringify(data)
   };  
-  console.log(PROJECT_ID);
-  //const response = await fetch(baseUrl+sendTx, options);
-  //const tx = await response.json();
-  //console.log(tx);
-
+  console.log(options);
+  const response = await fetch(baseUrl+sendTx, options);
+  try {
+    const tx = await response.json();
+    console.log(tx);
+    return true;
+  } catch(err) {
+    console.log(err);
+    return false;
+  }
   /*
   options.method = 'GET';
   const getReceipt = getRequest + tx.transactionId;
