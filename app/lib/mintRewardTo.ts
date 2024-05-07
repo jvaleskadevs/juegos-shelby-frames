@@ -25,7 +25,9 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
   };  
   const response = await fetch(baseUrl+sendTx, options);
   const tx = await response.json();
-  
+  console.log(tx);
+  console.log(PROJECT_ID);
+  /*
   options.method = 'GET';
   const getReceipt = getRequest + tx.transactionId;
   if (response.status == 200) {
@@ -48,5 +50,6 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     }
     return success;
   }
+  */
   return false;
 }
