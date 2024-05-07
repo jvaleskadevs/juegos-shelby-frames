@@ -14,7 +14,6 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
   };
   const baseUrl = 'https://api.syndicate.io/';
   const sendTx = 'transact/sendTransaction';
-  const getRequest = `/wallet/project/${PROJECT_ID}/request/`;
   const options = {
     method: 'POST',
     headers: {
@@ -37,11 +36,11 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
           'Content-Type': 'application/json'
         }
       };
-      const getReceipt = getRequest + tx.transactionId;
+      const getRequest = `wallet/project/${PROJECT_ID}/request/${tx.transactionId}`;
       let success;
       let counter = 0;
       while (!success || counter < 7) {
-        const response = await fetch(baseUrl+getReceipt, options);
+        const response = await fetch(baseUrl+getRequest, options);
         const receipt = await response.json();
         if (receipt?.invalid) return false;
         
