@@ -23,10 +23,11 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
     },
     body: JSON.stringify(data)
   };  
-  const response = await fetch(baseUrl+sendTx, options);
-  const tx = await response.json();
-  console.log(tx);
   console.log(PROJECT_ID);
+  //const response = await fetch(baseUrl+sendTx, options);
+  //const tx = await response.json();
+  //console.log(tx);
+
   /*
   options.method = 'GET';
   const getReceipt = getRequest + tx.transactionId;
