@@ -32,15 +32,14 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
       const stateOptions = {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${process.env.SYNDICATE_API_KEY}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${process.env.SYNDICATE_API_KEY}`
         }
       };
-      const getRequest = `wallet/project/${PROJECT_ID}/request/${tx.transactionId}`;
+      const getRequest = `${baseUrl}wallet/project/${PROJECT_ID}/request/${tx.transactionId}`;
       let success;
       let counter = 0;
       while (!success || counter < 7) {
-        const response = await fetch(baseUrl+getRequest, options);
+        const response = await fetch(getRequest, options);
         const receipt = await response.json();
         if (receipt?.invalid) return false;
         
