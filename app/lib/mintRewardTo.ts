@@ -28,11 +28,16 @@ export async function mintRewardTo(address: Address): Promise<boolean> {
   try {
     const tx = await response.json();
     console.log(tx);
-    
-    options.method = 'GET';
-    options.body = null;
-    const getReceipt = getRequest + tx.transactionId;
+
     if (response.status == 200) {
+      const stateOptions = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${process.env.SYNDICATE_API_KEY}`,
+          'Content-Type': 'application/json'
+        }
+      };
+      const getReceipt = getRequest + tx.transactionId;
       let success;
       let counter = 0;
       while (!success || counter < 7) {
