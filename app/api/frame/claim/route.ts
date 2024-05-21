@@ -35,7 +35,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         )?.verifiedAddresses?.[0] as Address | undefined;
         if (!address) return new NextResponse(Errors.NoAddress);
         const claimed = await isRewardClaimed(0, address);
-        const success = !claimed ? await mintRewardTo(address) : true;
+        const success = claimed || await mintRewardTo(address);
         if (success) {
           return new NextResponse(getFrameHtmlResponse({
             image: { 
@@ -53,11 +53,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   return new NextResponse(getFrameHtmlResponse({
     buttons: [
       {
-        label: 'Obtener recompensa'
+        label: 'Obtén tu recompensa'
       },
       {
         action: 'link',
-        label: 'Ver a T. Shelby',
+        label: 'Visita a T. Shelby',
         target: 'https://warpcast.com/thommyshelby17'
       }
     ],
