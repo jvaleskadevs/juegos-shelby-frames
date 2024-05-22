@@ -38,6 +38,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         const success = claimed || await mintRewardTo(address);
         if (success) {
           return new NextResponse(getFrameHtmlResponse({
+            buttons: [
+              {
+                action: 'link',
+                label: 'Ver tu recompensa',
+                target:`https://explorer.degen.tips/token/${address}`
+              }
+            ],
             image: { 
               src: `${URL}/success.jpeg`, 
               aspectRatio: '1:1' 
