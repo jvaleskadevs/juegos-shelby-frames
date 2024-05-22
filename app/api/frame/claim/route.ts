@@ -10,7 +10,7 @@ import {
 import { Address, toHex } from 'viem';
 import { mintRewardTo } from '../../../lib/mintRewardTo';
 import { isRewardClaimed } from '../../../lib/isRewardClaimed';
-import { URL } from '../../../config';
+import { URL, SHELBY } from '../../../config';
 import { Errors } from '../../../errors';
 import { rewards } from '../../../rewards';
 
@@ -42,7 +42,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
               {
                 action: 'link',
                 label: 'Ver tu recompensa',
-                target:`https://explorer.degen.tips/token/${address}`
+                target:`https://explorer.degen.tips/token/${SHELBY.address}`
               }
             ],
             image: { 
