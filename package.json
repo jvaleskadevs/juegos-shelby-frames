@@ -1,7 +1,7 @@
 {
-  "name": "jframe",
+  "name": "los-juegos-shelby-frames",
   "version": "1.0.0",
-  "description": "Basic Frame by J.",
+  "description": "Frames for the Juegos Shelby games in the Farcaster social network.",
   "author": "@j-valeska",
   "license": "MIT",
   "private": true,
